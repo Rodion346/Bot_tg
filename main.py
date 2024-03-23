@@ -1,15 +1,3 @@
-import subprocess
-
-# Чтение списка пакетов из requirements.txt
-with open("requirements.txt", "r") as f:
-    requirements = f.read().splitlines()
-
-# Создание команды pip install
-command = ["pip", "install", "-r", "requirements.txt"]
-
-# Запуск команды
-subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
-
 import asyncio
 import logging
 
