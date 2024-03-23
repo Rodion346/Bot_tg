@@ -4,7 +4,6 @@ import logging
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from aiogram import Dispatcher
 from aiogram.fsm.storage.memory import MemoryStorage
-from src.database import creat
 
 from src.check_status import check_status
 from src.handlers.help_handlers import router as help_r
@@ -35,6 +34,5 @@ async def main():
 
 
 if __name__ == '__main__':
-    creat()
     asyncio.run(main())
 
