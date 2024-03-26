@@ -2,16 +2,13 @@ import datetime
 
 from sqlalchemy import create_engine, update
 from sqlalchemy.orm import sessionmaker
-from src.models import Users
+from models import Users
 
 DB_NAME = "subscriptions.sqlite"
 
 engine = create_engine(f'sqlite:///{DB_NAME}')
 Session = sessionmaker(bind=engine)
 
-
-def creat():
-    Users.metadata.create_all(engine)
 
 def get_db():
     db = Session()

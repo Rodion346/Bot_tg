@@ -1,5 +1,5 @@
-from src.database import engine
-from src.models import Users
+from database import engine
+from models import Users
 
 
 def creat():
