@@ -2,7 +2,7 @@ import datetime
 
 from sqlalchemy import create_engine, update
 from sqlalchemy.orm import sessionmaker
-from models import Users
+from src.models import Users
 
 DB_NAME = "subscriptions.sqlite"
 

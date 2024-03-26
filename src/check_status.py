@@ -1,4 +1,4 @@
-from database import CRUD
+from src.database import CRUD
 import datetime
 
 c = CRUD()
