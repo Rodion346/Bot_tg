@@ -3,12 +3,10 @@ import datetime
 from sqlalchemy import create_engine, update
 from sqlalchemy.orm import sessionmaker
 from src.models import Users
-
-DB_NAME = "subscriptions.sqlite"
+from src.config import DB_NAME
 
 engine = create_engine(f'sqlite:///{DB_NAME}')
 Session = sessionmaker(bind=engine)
-
 
 def get_db():
     db = Session()
@@ -24,13 +22,17 @@ class CRUD:
         with get_db() as session:
             query = session.query(Users).filter(Users.user_id == user_id).first()
             if query:
-               return "f"
-            date = datetime.datetime.now() + datetime.timedelta(days=end_date)
-            data = Users(user_id=user_id, end_date=date, role=role, status=status)
-            session.add(data)
-            session.commit()
-            session.refresh(data)
-            return data
+                date = datetime.datetime.now() + datetime.timedelta(days=end_date)
+                stmt = update(Users).values(end_date=date).where(Users.user_id == user_id)
+                session.execute(stmt)
+                session.commit()
+            else:
+                date = datetime.datetime.now() + datetime.timedelta(days=end_date)
+                data = Users(user_id=user_id, end_date=date, role=role, status=status)
+                session.add(data)
+                session.commit()
+                session.refresh(data)
+                return data
 
     def get_admin_id(self, role):
         with get_db() as session:
@@ -58,10 +60,14 @@ class CRUD:
             if query:
                 return query.end_date
             else: return 404
+
     def update_val(self, user_id, new_status):
         with get_db() as session:
             stmt = update(Users).values(status=new_status).where(Users.user_id==user_id)
             session.execute(stmt)
             session.commit()
+
+
+
 
 

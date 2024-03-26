@@ -24,7 +24,6 @@ async def check_pay(callback: types.CallbackQuery):
 
 @router.callback_query(F.data)
 async def status_pay(callback: types.CallbackQuery):
-    print(callback.data)
     await callback.bot.edit_message_reply_markup(chat_id=callback.message.chat.id, message_id=callback.message.message_id, reply_markup=None)
     if "notpay_" in callback.data:
         kb = [help_button, support_button,]

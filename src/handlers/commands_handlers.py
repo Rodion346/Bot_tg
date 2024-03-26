@@ -15,6 +15,7 @@ async def cmd_start(message: types.Message):
     builder = InlineKeyboardBuilder()
     builder.add(types.InlineKeyboardButton(text="На месяц", callback_data="Месяц"))
     builder.add(types.InlineKeyboardButton(text="На неделю", callback_data="Неделя"))
+    builder.add(types.InlineKeyboardButton(text="На День бесплатно", callback_data="День"))
     await message.answer(start_txt, reply_markup=builder.as_markup())
 
 
